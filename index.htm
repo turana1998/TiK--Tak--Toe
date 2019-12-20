@@ -1,0 +1,177 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JS</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+        }
+
+        div {
+            display: none;
+            margin: auto;
+        }
+
+        table,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            height: 100px;
+            width: 100px;
+            text-align: center;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        form {
+            width: 500px;
+            height: 200px;
+            background-color: firebrick;
+            margin: auto;
+            text-align: center;
+            padding-top: 100px;
+            border-radius: 10px;
+        }
+
+        form input {
+            width: 200px;
+            height: 30px;
+            border: none;
+            border-radius: 15px;
+            background-color: white;
+            color: black;
+            text-align: center;
+            outline: none;
+
+        }
+
+        form button {
+            text-align: center;
+            height: 30px;
+            width: 150px;
+            border: none;
+            border-radius: 15px;
+            outline: none;
+            color: firebrick;
+            margin-top: 20px;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <form id="Form" action="#">
+        <input class="p1" placeholder="Player-1" />
+        <input class="p2" placeholder="Player-2" />
+        <button onclick="Start()">Start</button>
+
+    </form>
+    <div id="Tbl">
+        <p id="p1">user1</p>
+        <p id="p2">user2</p>
+        <table></table>
+    </div>
+
+
+    <script>
+
+        let ply1;
+        let ply2;
+        let X = "X";
+        let O = "O";
+        let say = 1;
+        let M = [];
+        Massiv();
+        Qur();
+        function Start() {
+            document.getElementById("Tbl").style.display = "block";
+            document.getElementsByTagName("form")[0].style.display = "none";
+            ply1 = document.getElementsByTagName("input")[0].value;
+            ply2= document.getElementsByTagName("input")[1].value;
+            document.getElementById("p1").innerHTML = `${ply1}`;
+            document.getElementById("p2").innerHTML = `${ply2}`;
+
+        }
+        function Massiv() {
+            for (let i = 0; i < 3; i++) {
+                M[i] = [];
+            }
+        }
+
+        function Qur() {
+            let tbl = "";
+            for (let i = 0; i < 3; i++) {
+                tbl += `<tr>`;
+                for (let j = 0; j < 3; j++) {
+                    M[i][j] = M[i][j] == undefined ? "" : M[i][j];
+                    tbl += `<td onclick="Tikla(${i},${j})">${M[i][j]}</td>`;
+                }
+                tbl += `</tr>`;
+            }
+            document.getElementsByTagName("table")[0].innerHTML = tbl;
+        }
+
+        function Tikla(i, j) {
+            if (M[i][j] == "") {
+                if (say % 2 == 1) {
+                    M[i][j] = X;
+                } else {
+                    M[i][j] = O;
+                }
+                say++;
+                setTimeout(Yoxla, 200);
+                Qur();
+            }
+        }
+        function sil() {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    M[i][j] == "";
+                }
+            }
+        }
+        function Yoxla() {
+            for (let i = 0; i < 3; i++) {
+                if (M[i][0] == M[i][1] && M[i][1] == M[i][2] && M[i][0] != "") {
+                    alert(M[i][0] + " Uddun");
+                    sil()
+                }
+            }
+
+            for (let i = 0; i < 3; i++) {
+                if (M[0][i] == M[1][i] && M[1][i] == M[2][i] && M[0][i] != "") {
+                    alert(M[0][i] + " Uddun");
+                    sil();
+                }
+            }
+
+            if (M[0][0] == M[1][1] && M[1][1] == M[2][2] && M[0][0] != "") {
+                alert(M[0][0] + " Uddun");
+                sil();
+            }
+            if (M[0][2] == M[1][1] && M[1][1] == M[2][0] && M[0][2] != "") {
+                alert(M[0][2] + " Uddun");
+                sil();
+            }
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                  if( M[0][0] != "" && M[0][1] != "" && M[0][2] != "" && M[1][0] != "" && M[1][1] != "" && M[1][2] != "" && M[2][0] != "" && M[2][1] != "" && M[2][2] != "") 
+                  {
+                      alert("Oyun Bitdi")
+                  }
+                    
+                }
+            }
+            
+        }
+        
+    </script>
+</body>
+
+</html>
