@@ -4,20 +4,40 @@
     <meta charset="UTF-8" />
     <title>JS</title>
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese');
         body {
             margin: 0;
+            background: url(bg1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
             display: flex;
+
         }
 
         div {
             display: none;
             margin: auto;
         }
+       
 
         table,
         td {
-            border: 1px solid black;
+            border: 5px solid black;
             border-collapse: collapse;
+            background-color:rgb(161, 43, 43);
+        }
+        #Tbl label{
+            font-size: 45px;
+            font-family: 'Lobster', cursive;
+            margin-top: 50x;
+            color: lightcyan;
+            display: block;
+            text-align: center;
+        }
+        img
+        {
+            height: 100px;
+            width: 100px;
         }
 
         td {
@@ -30,16 +50,23 @@
 
         form {
             width: 500px;
-            height: 200px;
+            height: 300px;
             background-color: firebrick;
             margin: auto;
             text-align: center;
-            padding-top: 100px;
+            padding-top: 0px;
             border-radius: 10px;
         }
 
+        form label{
+            font-size: 30px;
+            font-family: 'Lobster', cursive;
+            margin-top: 50x;
+        }
+        
         form input {
             width: 200px;
+            margin-top: 50px;
             height: 30px;
             border: none;
             border-radius: 15px;
@@ -47,9 +74,18 @@
             color: black;
             text-align: center;
             outline: none;
+            font-family: 'Lobster', cursive;
+            padding: 5px;
 
         }
+        form input::placeholder
+        {
+            color: black;
+            text-align: center;
+            font-family: 'Lobster', cursive;
+            padding: 5px;
 
+        }
         form button {
             text-align: center;
             height: 30px;
@@ -60,6 +96,7 @@
             color: firebrick;
             margin-top: 20px;
             cursor: pointer;
+            font-family: 'Lobster', cursive;
 
         }
     </style>
@@ -67,15 +104,21 @@
 
 <body>
     <form id="Form" action="#">
-        <input class="p1" placeholder="Player-1" />
-        <input class="p2" placeholder="Player-2" />
+        <label>TIK TAK TOE </label>
+        <br/>
+        <input class="p1" placeholder="Player-1" required="required" />
+        <input class="p2" placeholder="Player-2" required="required"  />
         <button onclick="Start()">Start</button>
 
     </form>
     <div id="Tbl">
+        <!--<label>Game</label>-->
         <p id="p1">user1</p>
         <p id="p2">user2</p>
-        <table></table>
+       
+        <table>
+            
+        </table>
     </div>
 
 
@@ -83,8 +126,8 @@
 
         let ply1;
         let ply2;
-        let X = "X";
-        let O = "O";
+        let X = "<img src='x.png' >";
+        let O = "<img src='o.png' >"
         let say = 1;
         let M = [];
         Massiv();
@@ -121,6 +164,7 @@
             if (M[i][j] == "") {
                 if (say % 2 == 1) {
                     M[i][j] = X;
+
                 } else {
                     M[i][j] = O;
                 }
